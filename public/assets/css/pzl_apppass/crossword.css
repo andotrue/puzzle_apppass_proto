@@ -1,0 +1,101 @@
+body {
+	background-image: url(/img/play/numberplace/bg.png);
+}
+#hk, #vk { display: none; }
+#cw {
+}
+#cw td {
+	border: 1px solid black;
+	position: relative;
+	background-color: rgba(255,255,255,.9);
+}
+#cw td.black {
+	background-color: black;
+}
+#cw td.no-border {
+	border-color: transparent;
+	background-color: transparent;
+}
+#cw tr:first-of-type td.no-border:not(:first-of-type) {
+	border-bottom-color: black;
+}
+#cw tr:not(:first-of-type) td.no-border:first-of-type {
+	border-right-color: black;
+}
+#cw td > div.cell-no {
+	position: absolute;
+	background: white;
+	width: 10px;
+	height: 10px;
+	text-align: center;
+	line-height: 10px;
+	border: 1px solid black;
+    font-size: 8px;
+}
+#cw td.ans input {
+	border-color: #999;
+}
+#cw input[type="text"] {
+	display: block;
+	background-color: transparent;
+	border: 2px solid transparent;
+	border-radius: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	outline: none;
+	text-align: center;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+}
+#cw input:focus {
+	opacity: 1;
+}
+#sub {
+	text-align: center;
+	padding: 1em;
+	background: #eeee06
+}
+#sub button {
+    margin: 10px;
+}
+#sub a > img {
+	width: 20%;
+    margin: 5px;
+}
+
+/* */
+.popover {
+	left: 2%!important;
+	width: 96%;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+    border: 3px solid black;
+    border-radius: 0;
+    background: rgba(255,255,255,.9);
+    font-size: 18px;
+}
+.popover .arrow {
+	opacity: 0!important;
+}
+.popover.right {
+    margin-left: 0;
+}
+.popover-inner h3 {
+    display: none;
+}
+.popover-inner {
+    background: transparent;
+}
+.popover-content {
+    padding: 4px;
+}
+
+#cw input[type="text"][value=" "],
+#cw input[type="text"][value="　"] {
+    background-color: rgba(255,0,0,.2);
+    content: '空白';
+}

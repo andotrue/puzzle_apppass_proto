@@ -1,0 +1,80 @@
+#sub-header {
+	text-align: center;
+	margin: 0;
+}
+#sub-header > img {
+	width: 260px;
+}
+#puzzle-menu {
+	width: 100%;
+	border-top: 3px solid #1E93EA;
+	border-bottom: 3px solid #1E93EA;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	padding: 2%;
+	background-image: url(/img/menu/bg.png);
+}
+.puzzle {
+	display: inline-block;
+	width: 32%;
+	background-size: 100%;
+	position: relative;
+    background-repeat: no-repeat;
+}
+.puzzle h6 {
+	bottom: 36px;
+	width: 100%;
+    margin: 0;
+	text-align: center;
+	position: absolute;
+    text-shadow: 0 0 3px white, 0 0 3px white, 0 0 3px white;
+}
+.puzzle .stars {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    z-index: 100;
+    text-align: center;
+}
+#puzzle-menu .pagination ul {
+	background-color: white;
+}
+#sub-header + div > a {
+    display: inline-block;
+    max-width: 31%;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+#sub-header + div > a > img {
+    width: 100%;
+    margin: 0; padding: 0;
+}
+#dialog h6,
+#dialog p {
+    margin: 0;
+}
+#graph {
+    position: relative;
+    padding: 20px 0 10px 10px;
+    background-color: #224499;
+}
+#label-y,
+#label-x,
+#notes {
+    font-size: 10px;
+    line-height: 10px;
+    position: absolute;
+    color: #ddf;
+    text-align: center;
+}
+#label-y { top: 3px; left: 3px; }
+#label-x { bottom: 3px; left: 25px; }
+#notes { bottom: 3px; right: 20px; }
+#notes :nth-of-type(1),
+#notes :nth-of-type(1) * { color: #f3e630; }
+#notes :nth-of-type(2),
+#notes :nth-of-type(2) * { color: #00ff6e; }
+#notes :nth-of-type(3),
+#notes :nth-of-type(3) * { color: #ff0000; }
