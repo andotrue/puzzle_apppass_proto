@@ -80,21 +80,21 @@ $(function() {
 <h2 id="sub-header"><img src="/img/title_word.png"></h2>
 <div align="center">
 <?php if($sort == 1){?>
-<?=anchor('/crossword/select/', '<img src="/img/nanido1_f.png" data-active-src="/img/nanido1_f.png">', 'title="★"') ?>
+<?=Html::anchor('/crossword/select/', '<img src="/img/nanido1_f.png" data-active-src="/img/nanido1_f.png">', array('title',"★")) ?>
 <?php }else{ ?>
-<?=anchor('/crossword/select/1/1', '<img src="/img/nanido1.png" data-active-src="/img/nanido1_f.png">', 'title="★"') ?>
+<?=Html::anchor('/crossword/select/1/1', '<img src="/img/nanido1.png" data-active-src="/img/nanido1_f.png">', array('title',"★")) ?>
 <?php } ?>
 
 <?php if($sort == 2 ){?>
-<?=anchor('/crossword/select/', '<img src="/img/nanido2_f.png" data-active-src="/img/nanido2_f.png">', 'title="★★"') ?>
+<?=Html::anchor('/crossword/select/', '<img src="/img/nanido2_f.png" data-active-src="/img/nanido2_f.png">', array('title',"★★")) ?>
 <?php }else{ ?>
-<?=anchor('/crossword/select/1/2', '<img src="/img/nanido2.png" data-active-src="/img/nanido2_f.png">', 'title="★★"') ?>
+<?=Html::anchor('/crossword/select/1/2', '<img src="/img/nanido2.png" data-active-src="/img/nanido2_f.png">', array('title',"★★")) ?>
 <?php } ?>
 
 <?php if($sort == 3 ){?>
-<?=anchor('/crossword/select/', '<img src="/img/nanido3_f.png" data-active-src="/img/nanido3_f.png">', 'title="★★★"') ?>
+<?=Html::anchor('/crossword/select/', '<img src="/img/nanido3_f.png" data-active-src="/img/nanido3_f.png">', array('title',"★★★")) ?>
 <?php }else{ ?>
-<?=anchor('/crossword/select/1/3', '<img src="/img/nanido3.png" data-active-src="/img/nanido3_f.png">', 'title="★★★"') ?>
+<?=Html::anchor('/crossword/select/1/3', '<img src="/img/nanido3.png" data-active-src="/img/nanido3_f.png">', array('title',"★★★")) ?>
 <?php } ?>
 </div>
 
@@ -129,7 +129,8 @@ $(function() {
 
 </section>
 
-<?php if ($this->is_login): ?>
+<?php ////if ($this->is_login): ?>
+<?php if (false): ?>
 <?php
 $chart = "//chart.googleapis.com/chart";
     $chart .= "?chf=a,s,000000|bg,lg,0,224499,1|c,s,1398E5";
@@ -161,7 +162,7 @@ $chart = "//chart.googleapis.com/chart";
 <?php endif ?>
 
 <div align="right">
-<?=anchor('/top/menu', '<img src="/img/button_back.png" data-active-src="/img/button_back_f.png">', 'title="戻る"') ?>
+<?=Html::anchor('/top/menu', '<img src="/img/button_back.png" data-active-src="/img/button_back_f.png">', array('title',"戻る")) ?>
 </div>
 
 <div id="dialog" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
@@ -171,12 +172,12 @@ $chart = "//chart.googleapis.com/chart";
     </tr></table>
 	<div class="modal-inner">
         <h6></h6>
-    <?php if ($this->is_login): ?>
+    <?php ////if ($this->is_login): ?>
 		<a href="#" class="btn2" id="load"><img src="/img/dialog/button_tudukikara.png" data-active-src="/img/dialog/button_tudukikara_f.png"></a>
-    <?php else: ?>
+    <?php ////else: ?>
 		<a class="btn2"><img src="/img/dialog/button_tudukikara_gray.png"></a>
         <p>パズルメイト会員になると<br>ゲームの途中保存が可能です！</p>
-    <?php endif ?>
+    <?php ////endif ?>
 		<a href="#" class="btn2" id="start"><img src="/img/dialog/button_hajimekara.png" data-active-src="/img/dialog/button_hajimekara_f.png"></a>
 	</div>
 </div>

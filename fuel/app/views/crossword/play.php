@@ -9,7 +9,24 @@
 		</div>
 		<?////= $puzzle ?>
 
+<?php 
+echo "<table id='cw'>\n";
+echo "<tbody>\n";
+foreach($table as $row){
+	echo "<tr>\n";
+	foreach($row as $cell){
+		echo $cell["class"]? "<td class='".$cell["class"]."'>" : "<td>";
+		echo $cell["data"];
+		echo "</td>";
+	}
+	echo "</tr>\n";
+}
+echo "</tbody>\n";
+echo "</table>\n";
+?>
+<br><br><br><br>
 
+<!-- 
 		<table id="cw">
 		<tbody>
 		<tr>
@@ -24,7 +41,7 @@
 		<td class='ans'><div class="cell-no" data-cell-no="9">9</div><div class="ans-no" name="2">2</div><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td><td class=''><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td><td class=''><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td><td class='black'>&nbsp;</td><td class=''><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td></tr>
 		</tbody>
 		</table>
-		
+ -->		
 
 		<div id="new-ans"><table><?php foreach ($answer_cells as $idx => $ac): ?>
 					<?php if ($ac): ?><tr><td><div name="ans_<?= $ac ?>" title="<?= $idx+1 ?>"></div></td></tr><?php endif ?>
