@@ -56,6 +56,26 @@ class Controller_Crossword extends Controller_Base
 		////->limit($limit + 1, ($page - 1) * $limit)->get()->result_array();
 		
 		$puzzles = array();
+		$user_id = 2;//kari
+		/*
+		$puzzles = Model_Crossword_Mst::find('first', array(
+		        'where' => array(
+		                array('puzzleid', $puzzleid),
+		        )
+		));
+		*/
+        $query = DB::select(DB::expr('m.question,m.puzzleid,m.mapsizeh,l.status,'.$sort_var))->from(DB::expr('crossword_mst as m'))
+                    ->join(DB::expr('crossword_log as l'),'LEFT')
+                    ->on('m.puzzleid','=','l.puzzleid')
+                    ->where('user_id','=',$user_id)
+                    ->where('code', 'INF000')
+                    ;
+        $puzzles = $query->execute()->as_array();
+        
+        Log::debug(print_r(DB::last_query(),true));
+        //echo DB::last_query();exit;
+        //Log::debug(print_r($puzzles,true));
+        
 		
 		if (count($puzzles) == $limit + 1)
 		{
@@ -132,9 +152,9 @@ class Controller_Crossword extends Controller_Base
 		}
 		*/
 		
-		////$query = Model_Crossword_Mst::query()->where('puzzleid', $puzzleid)->order_by('puzzleid', 'desc');
-		////$crosswordMst = $query->get_one();
-		////$puzzle = $crosswordMst;
+		//$query = Model_Crossword_Mst::query()->where('puzzleid', $puzzleid)->order_by('puzzleid', 'desc');
+		//$crosswordMst = $query->get_one();
+		//$puzzle = $crosswordMst;
 		$puzzle = Model_Crossword_Mst::find('first', array(
 				'where' => array(
 						array('puzzleid', $puzzleid),
