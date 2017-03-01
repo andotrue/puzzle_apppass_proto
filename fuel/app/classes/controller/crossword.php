@@ -56,23 +56,20 @@ class Controller_Crossword extends Controller_Base
 		////->limit($limit + 1, ($page - 1) * $limit)->get()->result_array();
 		
 		$puzzles = array();
-		$user_id = 2;//kari
-		/*
-		$puzzles = Model_Crossword_Mst::find('first', array(
-		        'where' => array(
-		                array('puzzleid', $puzzleid),
-		        )
-		));
-		*/
+		$user_id = 1;//kari
+		echo $sort_var."/";
         $query = DB::select(DB::expr('m.question,m.puzzleid,m.mapsizeh,l.status,'.$sort_var))->from(DB::expr('crossword_mst as m'))
                     ->join(DB::expr('crossword_log as l'),'LEFT')
                     ->on('m.puzzleid','=','l.puzzleid')
                     ->where('user_id','=',$user_id)
                     ->where('code', 'INF000')
+                    ->group_by('title')
+                    ->order_by(DB::expr('lvsort asc, m.question asc'))
+                    ->limit($limit + 1, ($page - 1) * $limit)
                     ;
         $puzzles = $query->execute()->as_array();
         
-        Log::debug(print_r(DB::last_query(),true));
+        //Log::debug(print_r(DB::last_query(),true));
         //echo DB::last_query();exit;
         //Log::debug(print_r($puzzles,true));
         
