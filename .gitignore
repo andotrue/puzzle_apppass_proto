@@ -33,3 +33,6 @@ desktop.ini
 /fuel/app/config/crypt.php
 
 /logs/*
+/logs/acccess*
+/logs/access_log
+logs/access_log
