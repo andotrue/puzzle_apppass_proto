@@ -57,7 +57,6 @@ class Controller_Crossword extends Controller_Base
 		
 		$puzzles = array();
 		$user_id = 1;//kari
-		echo $sort_var."/";
         $query = DB::select(DB::expr('m.question,m.puzzleid,m.mapsizeh,l.status,'.$sort_var))->from(DB::expr('crossword_mst as m'))
                     ->join(DB::expr('crossword_log as l'),'LEFT')
                     ->on('m.puzzleid','=','l.puzzleid')
@@ -188,6 +187,7 @@ class Controller_Crossword extends Controller_Base
             $data['timestamp'] = floor((float)microtime(TRUE) * 1000);
         }
         */
+		$data['timestamp'] = floor((float)microtime(TRUE) * 1000);
 
 		////$this->load->library('table');////HTML テーブルクラス クラスの初期化
 		////$this->table->auto_heading = false;
