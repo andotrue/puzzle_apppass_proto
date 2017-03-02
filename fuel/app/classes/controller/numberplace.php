@@ -37,7 +37,7 @@ class Controller_Numberplace extends Controller_Base {
 	public function action_select($page = 1,$sort = "")
 	{
         // 一覧取得
-        $data = $this->session->userdata('auth');
+        ////$data = $this->session->userdata('auth');
 
         //lvsort
         switch ($sort) {
@@ -56,11 +56,25 @@ class Controller_Numberplace extends Controller_Base {
         }
 
         $limit = 30;
-		$puzzles = $this->db->select('m.question,m.puzzleid,m.qlv,l.status,'.$sort_var,FALSE)->from('numberplace_mst AS m')
-			->join('numberplace_log AS l', "l.puzzleid = m.puzzleid AND user_id = '{$data['user_id']}'", 'left')
-			->where('code', 'INF000')->group_by('title')->order_by('lvsort asc , m.question asc')
-			->limit($limit + 1, ($page - 1) * $limit)->get()->result_array();
+		////$puzzles = $this->db->select('m.question,m.puzzleid,m.qlv,l.status,'.$sort_var,FALSE)->from('numberplace_mst AS m')
+		////	->join('numberplace_log AS l', "l.puzzleid = m.puzzleid AND user_id = '{$data['user_id']}'", 'left')
+		////	->where('code', 'INF000')->group_by('title')->order_by('lvsort asc , m.question asc')
+		////	->limit($limit + 1, ($page - 1) * $limit)->get()->result_array();
 
+		$puzzles = array();
+		$user_id = 1;//kari
+		$query = DB::select(DB::expr('m.question, m.puzzleid, m.qlv, l.status, '.$sort_var))->from(DB::expr('numberplace_mst as m'))
+		->join(DB::expr('numberplace_log as l'),'LEFT')
+		->on('m.puzzleid','=','l.puzzleid')
+		->where('user_id','=',$user_id)
+		->where('code', 'INF000')
+		->group_by('title')
+		->order_by(DB::expr('lvsort asc, m.question asc'))
+		->limit($limit + 1, ($page - 1) * $limit)
+		;
+		$puzzles = $query->execute()->as_array();
+		
+		
         if (count($puzzles) == $limit + 1)
 		{
 			$data['next'] = $page + 1;
@@ -75,20 +89,38 @@ class Controller_Numberplace extends Controller_Base {
 		$data["pzs"] = $puzzles;
 		$data["sort"] = $sort;
 
-        $graph["1"] = $this->numberplace->find_graph($data['user_id'],1);
-        $graph["2"] = $this->numberplace->find_graph($data['user_id'],2);
-        $graph["3"] = $this->numberplace->find_graph($data['user_id'],3);
+		$graph = array();
+        ////$graph["1"] = $this->numberplace->find_graph($data['user_id'],1);
+        ////$graph["2"] = $this->numberplace->find_graph($data['user_id'],2);
+        ////$graph["3"] = $this->numberplace->find_graph($data['user_id'],3);
 		$data["graph"] = $graph;
 
-        $view_data["meta"]["title"]  = "ナンプレ問題メニュー";
-        $view_data["meta"]["keywords"]  = "パズルメイト, パズル, ゲーム, ナンプレ, クロスワード, IQクイズ・パズル, 女子力up, ひらめきup";
-        $view_data["meta"]["description"]  = "パズル誌発行部数業界No.1の(株)マガジン・マガジンが監修する良質な問題が遊び放題！ナンプレ、クロスワード、IQパズル・クイズ、女子力up、ひらめきupの５つのパズルから好きなゲームを選んでね♪";
+        ////$view_data["meta"]["title"]  = "ナンプレ問題メニュー";
+        ////$view_data["meta"]["keywords"]  = "パズルメイト, パズル, ゲーム, ナンプレ, クロスワード, IQクイズ・パズル, 女子力up, ひらめきup";
+        ////$view_data["meta"]["description"]  = "パズル誌発行部数業界No.1の(株)マガジン・マガジンが監修する良質な問題が遊び放題！ナンプレ、クロスワード、IQパズル・クイズ、女子力up、ひらめきupの５つのパズルから好きなゲームを選んでね♪";
+		$this->template->set_global('table2', $table2, false);
+		
+        ////$view_data["main_content"]	= $this->load->view('numberplace/select',$data,true);
+		////$view_data['top_logo'] = '/img/title_menu.png';
+		////$view_data['stylesheets'][] = 'puzzle_menu';
+		////$view_data['javascripts'][] = 'puzzle_menu';
+		
+		//CSSファイルの追加
+		$this->template->css = isset($this->template->css)? $this->template->css : array();
+		array_push(
+				$this->template->css
+				,"pzl_apppass/puzzle_menu.css"
+		);		
 
-        $view_data["main_content"]	= $this->load->view('numberplace/select',$data,true);
-		$view_data['top_logo'] = '/img/title_menu.png';
-		$view_data['stylesheets'][] = 'puzzle_menu';
-		$view_data['javascripts'][] = 'puzzle_menu';
-		$this->load->view('base2',$view_data);
+		//JSファイルの追加
+		$this->template->js = isset($this->template->js)? $this->template->js : array();
+		array_push(
+				$this->template->js
+				,"pzl_apppass/puzzle_menu.js"
+		);
+		////$this->load->view('base2',$view_data);
+		$this->template->content = View::forge('numberplace/select',$data);
+		
 
 	}
 	// Game Select
