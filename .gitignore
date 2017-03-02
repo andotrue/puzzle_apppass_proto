@@ -32,4 +32,4 @@ desktop.ini
 /fuel/app/cache/*/*
 /fuel/app/config/crypt.php
 
-logs/*
+/logs/*
