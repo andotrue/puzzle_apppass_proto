@@ -28,7 +28,10 @@ class Controller_Crossword extends Controller_Base
 	 */
 	public function action_select($page = 1,$sort ="")
 	{
-		////$this->load->model('Crossword_model', 'crossword', TRUE);
+		$user_id = 1;//kari///////////////////////////
+	    
+	    
+	    ////$this->load->model('Crossword_model', 'crossword', TRUE);
 		// 一覧取得
 		////$data = $this->session->userdata('auth');
 		$data = array();
@@ -56,7 +59,6 @@ class Controller_Crossword extends Controller_Base
 		////->limit($limit + 1, ($page - 1) * $limit)->get()->result_array();
 		
 		$puzzles = array();
-		$user_id = 1;//kari
         $query = DB::select(DB::expr('m.question,m.puzzleid,m.mapsizeh,l.status,'.$sort_var))->from(DB::expr('crossword_mst as m'))
                     ->join(DB::expr('crossword_log as l'),'LEFT')
                     ->on('m.puzzleid','=','l.puzzleid')
@@ -83,20 +85,21 @@ class Controller_Crossword extends Controller_Base
 			$data['next'] = FALSE;
 		}
 		$data['prev'] = ($page > 1)? $page - 1 : FALSE;
-		////log_message('error', "message");
-		////log_message('error', "message0");
 	
 		$data["pzs"] = $puzzles;
 		$data["sort"] = $sort;
+		$graph = array();
 		////$graph["1"] = $this->crossword->find_graph($data['user_id'],1);
 		////$graph["2"] = $this->crossword->find_graph($data['user_id'],2);
 		////$graph["3"] = $this->crossword->find_graph($data['user_id'],3);
-		$graph = array();
+		$graph["1"] = Model_Crossword_Mst::find_graph($user_id, 1);
+		$graph["2"] = Model_Crossword_Mst::find_graph($user_id, 2);
+		$graph["3"] = Model_Crossword_Mst::find_graph($user_id, 3);
 		$data["graph"] = $graph;
 	
-		$view_data["meta"]["title"]  = "クロスワード問題メニュー";
-		$view_data["meta"]["keywords"]  = "パズルメイト, パズル, ゲーム, ナンプレ, クロスワード, IQクイズ・パズル, 女子力up, ひらめきup";
-		$view_data["meta"]["description"]  = "パズル誌発行部数業界No.1の(株)マガジン・マガジンが監修する良質な問題が遊び放題！ナンプレ、クロスワード、IQパズル・クイズ、女子力up、ひらめきupの５つのパズルから好きなゲームを選んでね♪";
+		$this->template->title  = "クロスワード問題メニュー";
+		$this->template->keywords  = "パズルメイト, パズル, ゲーム, ナンプレ, クロスワード, IQクイズ・パズル, 女子力up, ひらめきup";
+		$this->template->description  = "パズル誌発行部数業界No.1の(株)マガジン・マガジンが監修する良質な問題が遊び放題！ナンプレ、クロスワード、IQパズル・クイズ、女子力up、ひらめきupの５つのパズルから好きなゲームを選んでね♪";
 	
 		////$view_data["main_content"]	= $this->load->view('crossword/select',$data,true);
 		$view_data['top_logo'] = '/img/title_menu.png';
@@ -139,32 +142,29 @@ class Controller_Crossword extends Controller_Base
 			exit;
 		}
 		
-		/*////ORIGINAL CI
-		if ( ! ($puzzle = $this->crossword->find_one($puzzleid)))
+		$puzzle = Model_Crossword_Mst::find('first', array(
+		              'where' => array(array('puzzleid', $puzzleid)),
+		              'order by' => array('puzzleid' => 'desc'),
+		          ));
+//echo "<pre>"; var_dump($puzzle);echo "</pre>";
+		//if ( ! ($puzzle = $this->crossword->find_one($puzzleid)))
+		if(!$puzzle)
 		{
 			// TODO: 指定のレコードが存在しない旨選択画面に渡す
 			redirect('/crossword/select', 'location');
 			exit;
 		}
-		*/
-		
-		//$query = Model_Crossword_Mst::query()->where('puzzleid', $puzzleid)->order_by('puzzleid', 'desc');
-		//$crosswordMst = $query->get_one();
-		//$puzzle = $crosswordMst;
-		$puzzle = Model_Crossword_Mst::find('first', array(
-				'where' => array(
-						array('puzzleid', $puzzleid),
-				)
-		));
-//echo "<pre>"; var_dump($puzzle);echo "</pre>";
-//echo "<pre>"; var_dump($crosswordMst);echo "</pre>";
+
 		////$this->table = new stdClass;
 
-		/*////
+		$this->is_login = 1;//kari
         if ($this->is_login)
         {
             // 引き継ぎしないままゲームを始めた場合
-            $auth = $this->session->userdata('auth');
+            ////$auth = $this->session->userdata('auth');
+            $user_id = 1;//kari
+            $auth = Model_User_Table::find($user_id);
+            
             if ($auth['status'] == 2)
             {
                 $this->load->model('User_table_model', 'user', TRUE);
@@ -173,21 +173,41 @@ class Controller_Crossword extends Controller_Base
                 $this->session->set_userdata('auth', $auth);
             }
 
-		    if ($log = $this->crossword->find_one_log($this->user_id, $puzzleid))
+            ////$log = $this->crossword->find_one_log($this->user_id, $puzzleid);
+            $log = DB::select()
+            ->from('crossword_mst')
+            ->join('crossword_log')
+            ->on('crossword_mst.puzzleid','=','crossword_log.puzzleid')
+            ->where('user_id','=',$user_id)
+            ->where('crossword_mst.puzzleid', '=', $puzzleid)
+            ->limit(1)->execute()->as_array();
+            ;
+		    if (isset($log[0]))
 		    {
-			    $data['timestamp'] = $log->start_ms;
+			    $data['timestamp'] = $log[0]['start_ms'];
 		    }
 		    else
 		    {
-			    $data['timestamp'] = $this->crossword->insert_log($this->user_id, $puzzleid);
+			    ////$data['timestamp'] = $this->crossword->insert_log($this->user_id, $puzzleid);
+			    
+			    $log = new Model_Crossword_Mst();
+			    $log->user_id = $user_id;
+			    $log->puzzleid = $puzzleid;
+			    $log->answer = '';
+			    $log->status = 0;
+			    $log->start_ms = floor((float)microtime(TRUE) * 1000);
+			    $log->finish_ms = 0;
+			    $log->save();
+			     
+			    $data['timestamp'] = floor((float)microtime(TRUE) * 1000);
 		    }
         }
         else
         {
             $data['timestamp'] = floor((float)microtime(TRUE) * 1000);
         }
-        */
-		$data['timestamp'] = floor((float)microtime(TRUE) * 1000);
+
+        //$data['timestamp'] = floor((float)microtime(TRUE) * 1000);
 
 		////$this->load->library('table');////HTML テーブルクラス クラスの初期化
 		////$this->table->auto_heading = false;
@@ -266,9 +286,9 @@ $this->template->set_global('table', $table, false);
         $data['level'] = $puzzle->mapsizeh>=8? 3 : ($puzzle->mapsizeh>=6? 2 : 1);
         $data['answer_cells'] = $answer_cells;
 
-        $view_data["meta"]["title"]  = $puzzle->title." ゲーム画面";
-        $view_data["meta"]["keywords"]  = "パズルメイト, パズル, ゲーム, ナンプレ, クロスワード, IQクイズ・パズル, 女子力up, ひらめきup";
-        $view_data["meta"]["description"]  = "パズル誌発行部数業界No.1の(株)マガジン・マガジンが監修する良質な問題が遊び放題！答えを入力して、答え合わせボタンを押してください。";
+        $this->template->title = $puzzle->title." ゲーム画面";
+        $this->template->keywords = "パズルメイト, パズル, ゲーム, ナンプレ, クロスワード, IQクイズ・パズル, 女子力up, ひらめきup";
+        $this->template->description = "パズル誌発行部数業界No.1の(株)マガジン・マガジンが監修する良質な問題が遊び放題！答えを入力して、答え合わせボタンを押してください。";
 
         ////$view_data["main_content"]	= $this->load->view('crossword/play',$data,true);
         ////$view_data['stylesheets'][] = 'crossword';

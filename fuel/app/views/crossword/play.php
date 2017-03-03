@@ -26,23 +26,6 @@ echo "</table>\n";
 ?>
 <br><br><br><br>
 
-<!-- 
-		<table id="cw">
-		<tbody>
-		<tr>
-		<td class=''><div class="cell-no" data-cell-no="1">1</div><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td><td class=''><div class="cell-no" data-cell-no="2">2</div><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td><td class='black'>&nbsp;</td><td class='ans'><div class="cell-no" data-cell-no="3">3</div><div class="ans-no" name="3">3</div><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td><td class=''><div class="cell-no" data-cell-no="4">4</div><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td></tr>
-		<tr>
-		<td class='black'>&nbsp;</td><td class=''><div class="cell-no" data-cell-no="5">5</div><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td><td class=''><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td><td class=''><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td><td class=''><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td></tr>
-		<tr>
-		<td class=''><div class="cell-no" data-cell-no="6">6</div><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td><td class=''><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td><td class='black'>&nbsp;</td><td class=''><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td><td class='black'>&nbsp;</td></tr>
-		<tr>
-		<td class=''><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td><td class='black'>&nbsp;</td><td class='ans'><div class="cell-no" data-cell-no="7">7</div><div class="ans-no" name="1">1</div><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td><td class=''><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td><td class=''><div class="cell-no" data-cell-no="8">8</div><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td></tr>
-		<tr>
-		<td class='ans'><div class="cell-no" data-cell-no="9">9</div><div class="ans-no" name="2">2</div><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td><td class=''><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td><td class=''><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td><td class='black'>&nbsp;</td><td class=''><input type="text" maxlength="1" autocorrect="off" name="cells[]" /></td></tr>
-		</tbody>
-		</table>
- -->		
-
 		<div id="new-ans"><table><?php foreach ($answer_cells as $idx => $ac): ?>
 					<?php if ($ac): ?><tr><td><div name="ans_<?= $ac ?>" title="<?= $idx+1 ?>"></div></td></tr><?php endif ?>
 				<?php endforeach ?></table></div>

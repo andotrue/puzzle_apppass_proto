@@ -130,7 +130,7 @@ $(function() {
 </section>
 
 <?php ////if ($this->is_login): ?>
-<?php if (false): ?>
+<?php if (true): ?>
 <?php
 $chart = "//chart.googleapis.com/chart";
     $chart .= "?chf=a,s,000000|bg,lg,0,224499,1|c,s,1398E5";
@@ -173,11 +173,15 @@ $chart = "//chart.googleapis.com/chart";
 	<div class="modal-inner">
         <h6></h6>
     <?php ////if ($this->is_login): ?>
+		会員なら。。。<br>
 		<a href="#" class="btn2" id="load"><img src="/img/dialog/button_tudukikara.png" data-active-src="/img/dialog/button_tudukikara_f.png"></a>
     <?php ////else: ?>
+    	<br><br>非会員なら。↓<br>
 		<a class="btn2"><img src="/img/dialog/button_tudukikara_gray.png"></a>
         <p>パズルメイト会員になると<br>ゲームの途中保存が可能です！</p>
     <?php ////endif ?>
+    
+    	<br><br>どっちも<br>
 		<a href="#" class="btn2" id="start"><img src="/img/dialog/button_hajimekara.png" data-active-src="/img/dialog/button_hajimekara_f.png"></a>
 	</div>
 </div>

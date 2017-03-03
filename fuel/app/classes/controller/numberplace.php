@@ -181,19 +181,19 @@ class Controller_Numberplace extends Controller_Base {
                 $this->session->set_userdata('auth', $auth);
             }
             
-            $query = DB::select()->from('numberplace_mst')
-            ->join('numberplace_log')
-            ->on('numberplace_mst.puzzleid','=','numberplace_log.puzzleid')
-            ->where('user_id','=',$user_id)
-            ->where('numberplace_mst.puzzleid', '=', $puzzleid)
-            ->limit(1)
+		    /////$log = $this->numberplace->find_one_log($this->user_id, $puzzleid);
+            $log = DB::select()
+                        ->from('numberplace_mst')
+                        ->join('numberplace_log')
+                        ->on('numberplace_mst.puzzleid','=','numberplace_log.puzzleid')
+                        ->where('user_id','=',$user_id)
+                        ->where('numberplace_mst.puzzleid', '=', $puzzleid)
+                        ->limit(1)->execute()->as_array();
             ;
-            $log = $query->execute()->as_array();
             //var_dump(DB::last_query());
             //echo "<pre>";var_dump($log);echo "</pre>";
             //exit;
             
-		    //if ($log = $this->numberplace->find_one_log($this->user_id, $puzzleid))
 		    if (isset($log[0]))
 		    {
 			    $data['timestamp'] = $log[0]['start_ms'];
