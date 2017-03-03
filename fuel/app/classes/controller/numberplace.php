@@ -27,13 +27,18 @@ class Controller_Numberplace extends Controller_Base {
 		$this->user_id = $auth['user_id'];
 	}
 
-	// TOP
+	/*
+	 * ゲーム一覧ページ
+	 */
 	public function action_index()
 	{
 		redirect('/numberplace/select', 'location');
 		exit;
 	}
-	// Game Select
+
+	/*
+	 * ゲーム一覧ページ
+	 */
 	public function action_select($page = 1,$sort = "")
 	{
         // 一覧取得
@@ -98,7 +103,9 @@ class Controller_Numberplace extends Controller_Base {
         ////$view_data["meta"]["title"]  = "ナンプレ問題メニュー";
         ////$view_data["meta"]["keywords"]  = "パズルメイト, パズル, ゲーム, ナンプレ, クロスワード, IQクイズ・パズル, 女子力up, ひらめきup";
         ////$view_data["meta"]["description"]  = "パズル誌発行部数業界No.1の(株)マガジン・マガジンが監修する良質な問題が遊び放題！ナンプレ、クロスワード、IQパズル・クイズ、女子力up、ひらめきupの５つのパズルから好きなゲームを選んでね♪";
-		$this->template->set_global('table2', $table2, false);
+		$this->template->title = "ナンプレ問題メニュー";
+		$this->template->keywords = "パズルメイト, パズル, ゲーム, ナンプレ, クロスワード, IQクイズ・パズル, 女子力up, ひらめきup";
+		$this->template->description = "パズル誌発行部数業界No.1の(株)マガジン・マガジンが監修する良質な問題が遊び放題！ナンプレ、クロスワード、IQパズル・クイズ、女子力up、ひらめきupの５つのパズルから好きなゲームを選んでね♪";
 		
         ////$view_data["main_content"]	= $this->load->view('numberplace/select',$data,true);
 		////$view_data['top_logo'] = '/img/title_menu.png';
@@ -123,7 +130,10 @@ class Controller_Numberplace extends Controller_Base {
 		
 
 	}
-	// Game Select
+
+	/*
+	 * ゲームページ
+	 */
 	public function action_play($puzzleid ,$entry_id="")
 	{
 		if($entry_id){
@@ -140,12 +150,12 @@ class Controller_Numberplace extends Controller_Base {
 			exit;
 		}
 
+		////if ( ! ($puzzle = $this->numberplace->find_one($puzzleid)))
 		$puzzle = Model_Numberplace_Mst::find('first', array(
 		        'where' => array(
 		                array('puzzleid', $puzzleid),
 		        )
 		));
-		////if ( ! ($puzzle = $this->numberplace->find_one($puzzleid)))
 		if ( ! ($puzzle))
 		{
 			// TODO: 指定のレコードが存在しない旨選択画面に渡す
@@ -153,11 +163,16 @@ class Controller_Numberplace extends Controller_Base {
 			exit;
 		}
 
-		/*////
+		$this->is_login = 1;//kari
         if ($this->is_login)
         {
             // 引き継ぎしないままゲームを始めた場合
-            $auth = $this->session->userdata('auth');
+            ////$auth = $this->session->userdata('auth');
+            $user_id = 1;//kari
+            $auth = Model_User_Table::find($user_id);
+            //echo "<pre>";var_dump($auth);echo "</pre>";
+            //echo "<pre>";var_dump($auth['status']);echo "</pre>";
+            
             if ($auth['status'] == 2)
             {
                 $this->load->model('User_table_model', 'user', TRUE);
@@ -165,22 +180,44 @@ class Controller_Numberplace extends Controller_Base {
                 $auth['status'] = 1;
                 $this->session->set_userdata('auth', $auth);
             }
-
-		    if ($log = $this->numberplace->find_one_log($this->user_id, $puzzleid))
+            
+            $query = DB::select()->from('numberplace_mst')
+            ->join('numberplace_log')
+            ->on('numberplace_mst.puzzleid','=','numberplace_log.puzzleid')
+            ->where('user_id','=',$user_id)
+            ->where('numberplace_mst.puzzleid', '=', $puzzleid)
+            ->limit(1)
+            ;
+            $log = $query->execute()->as_array();
+            //var_dump(DB::last_query());
+            //echo "<pre>";var_dump($log);echo "</pre>";
+            //exit;
+            
+		    //if ($log = $this->numberplace->find_one_log($this->user_id, $puzzleid))
+		    if (isset($log[0]))
 		    {
-			    $data['timestamp'] = $log->start_ms;
+			    $data['timestamp'] = $log[0]['start_ms'];
 		    }
 		    else
 		    {
-			    $data['timestamp'] = $this->numberplace->insert_log($this->user_id, $puzzleid);
+			    //$data['timestamp'] = $this->numberplace->insert_log($this->user_id, $puzzleid);
+			    $log = new Model_Numberplace_Log();
+			    $log->user_id = $user_id;
+			    $log->puzzleid = $puzzleid;
+			    $log->answer = '';
+			    $log->status = 0;
+			    $log->start_ms = floor((float)microtime(TRUE) * 1000);
+			    $log->finish_ms = 0;
+			    $log->save();
+			    
+			    $data['timestamp'] = floor((float)microtime(TRUE) * 1000);
 		    }
         }
         else
         {
             $data['timestamp'] = floor((float)microtime(TRUE) * 1000);
         }
-        */
-		$data['timestamp'] = floor((float)microtime(TRUE) * 1000);
+		//$data['timestamp'] = floor((float)microtime(TRUE) * 1000);
 
 		////$this->load->library('table');
 		////$this->table->auto_heading = false;
@@ -223,7 +260,10 @@ $this->template->set_global('table2', $table2, false);
         ////$view_data["meta"]["title"]  = $puzzle->title." ゲーム画面";
         ////$view_data["meta"]["keywords"]  = "パズルメイト, パズル, ゲーム, ナンプレ, クロスワード, IQクイズ・パズル, 女子力up, ひらめきup";
         ////$view_data["meta"]["description"]  = "パズル誌発行部数業界No.1の(株)マガジン・マガジンが監修する良質な問題が遊び放題！答えを入力して、答え合わせボタンを押してください。";
-
+        $this->template->title = $puzzle->title." ゲーム画面";
+        $this->template->keywords = "パズルメイト, パズル, ゲーム, ナンプレ, クロスワード, IQクイズ・パズル, 女子力up, ひらめきup";
+        $this->template->description = "パズル誌発行部数業界No.1の(株)マガジン・マガジンが監修する良質な問題が遊び放題！答えを入力して、答え合わせボタンを押してください。";
+        
         ////$view_data["main_content"]	= $this->load->view('numberplace/play',$data,true);
 		////$view_data['stylesheets'][] = 'numberplace';
 		////$view_data['stylesheets'][] = 'play_result';
@@ -248,7 +288,6 @@ $this->template->set_global('table2', $table2, false);
 		        $this->template->js
 		        ,"pzl_apppass/button.js"
 		        ,"pzl_apppass/numberplace.js"
-		        //,"pzl_apppass/kb.js"
 		        ,"pzl_apppass/local_history.js"
 		        ,"pzl_apppass/play_common.js"
 		);
@@ -310,11 +349,35 @@ $this->template->set_global('table2', $table2, false);
 		$view_data["main_content"]	= $this->load->view('numberplace/finish','',true);
 		$this->load->view('base',$view_data);
 	}
-	public function reset($puzzleid)
+	
+	/*
+	 * はじめから
+	 */
+	public function action_reset($puzzleid)
 	{
-		$this->numberplace->delete_log($this->user_id, $puzzleid);
-		redirect('/numberplace/play/' . $puzzleid, 'location');
+	    $user_id = 1;//kari
+		////$this->numberplace->delete_log($this->user_id, $puzzleid);
+		$where = array('user_id'=>$user_id,'puzzleid'=>$puzzleid);
+		/*
+	    $logs = Model_Numberplace_Log::find('all',array('where'=>$where));
+        //echo DB::last_query();
+        echo "<pre>";var_dump($logs);echo "</pre>";
+	    if($logs){
+	        foreach($logs as $log){
+                //exit;
+	            $log->delete();
+	        }
+	    }
+	    */
+	    $result = DB::delete('numberplace_log')->where($where)->execute();;
+	    
+	    Response::redirect("/numberplace/play/$puzzleid");
+	    exit;
 	}
+	
+	/*
+	 * 
+	 */
 	public function reset_entry($puzzleid,$entryid="")
 	{
 		$this->numberplace->delete_log($this->user_id, $puzzleid);

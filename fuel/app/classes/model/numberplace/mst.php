@@ -12,10 +12,10 @@ class Model_Numberplace_Mst extends \Orm\Model
 		'questionbuttonid',
 		'startdt',
 		'question',
-		'mapsizeh',
-		'mapsizev',
+		'mapsizeh',//縦マス数
+		'mapsizev',//横マス数
 		'title',
-		'qlv',
+		'qlv',//難易度　1,2-星1つ、3-星２つ、4,5-星３つ
 		'qlist',
 		'alist',
 		'insert_date',

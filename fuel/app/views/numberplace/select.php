@@ -55,7 +55,9 @@ button {
 }
 -->
 </style>
+
 <script src="/js/button.js"></script>
+
 <script>
 $(function() {
     var puzzle = '';
@@ -95,7 +97,7 @@ $(function() {
 <section id="puzzle-menu">
 <?php foreach($pzs as $key => $val): ?>
 	<a class="puzzle status<?= $val['status'] ?>" href="/numberplace/play/<?= $val['puzzleid'] ?>">
-        <h6>No.<?= $val['question'] ?></h6>
+        <h6>No.<?= $val['question'] ?> / status:<?= $val['status'] ?> / qlv:<?= $val['qlv'] ?></h6>
         <div class="stars">
             <?php if($val['qlv'] < 3){?><img src="/img/public_difficulty.png">
             <?php }elseif($val['qlv'] == 3){?><img src="/img/public_difficulty.png"><img src="/img/public_difficulty.png">
@@ -125,6 +127,7 @@ $(function() {
 </section>
 
 <?php ////if ($this->is_login): ?>
+<?php if (false): ?>
 <?php
 $chart = "//chart.googleapis.com/chart";
     $chart .= "?chf=a,s,000000|bg,lg,0,224499,1|c,s,1398E5";
@@ -151,9 +154,9 @@ $chart = "//chart.googleapis.com/chart";
 </div>
 </div>
 <p>過去3ヶ月/最高30問のクリアタイムの推移を表示しています。</p>
-<?php ////else : ?>
+<?php else : ?>
 <img src="/img/graph_hikaiin.png" width="100%">
-<?php ////endif ?>
+<?php endif ?>
 
 
 <div align="center">
@@ -168,11 +171,15 @@ $chart = "//chart.googleapis.com/chart";
 	<div class="modal-inner">
         <h6></h6>
     <?php ////if ($this->is_login): ?>
+    	会員なら。。。<br>
 		<a href="#" class="btn2" id="load"><img src="/img/dialog/button_tudukikara.png" data-active-src="/img/dialog/button_tudukikara_f.png"></a>
     <?php ////else: ?>
+    	<br><br>非会員なら。↓<br>
 		<a class="btn2"><img src="/img/dialog/button_tudukikara_gray.png"></a>
         <p>パズルメイト会員になると<br>ゲームの途中保存が可能です！</p>
     <?php ////endif ?>
+    
+    	<br><br>どっちも<br>
 		<a href="#" class="btn2" id="start"><img src="/img/dialog/button_hajimekara.png" data-active-src="/img/dialog/button_hajimekara_f.png"></a>
 	</div>
 </div>

@@ -101,7 +101,7 @@ $(function() {
 <section id="puzzle-menu">
 <?php foreach($pzs as $key => $val): ?>
 	<a class="puzzle status<?= $val['status'] ?>" href="/crossword/play/<?= $val['puzzleid'] ?>">
-        <h6>No.<?= $val['question'] ?></h6>
+        <h6>No.<?= $val['question'] ?> / status:<?= $val['status'] ?></h6>
         <div class="stars">
             <?php if($val['mapsizeh'] < 6){?><img src="/img/public_difficulty.png">
             <?php }elseif($val['mapsizeh'] >= 6 and $val['mapsizeh'] <= 7){?><img src="/img/public_difficulty.png"><img src="/img/public_difficulty.png">

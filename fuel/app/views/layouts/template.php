@@ -7,6 +7,8 @@
 	<meta name="viewport" content="width=1024px" >
     <meta name="description" content="<?= $htmlmeta['description'] ?>">
     <meta name="keywords" content="<?= $htmlmeta['keywords'] ?>">
+    <meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache"> 
 	<link rel="apple-touch-icon" href="/webclip.png">
 	<link rel="shortcut icon" href="/favicon.ico" />
 	<?= Asset::css($css); ?>
@@ -25,7 +27,7 @@
 
 	<!-- CONTENTS -->
 	<?= $content; ?>
-						
+
 	<!-- FOOTER -->
 	<?= $footer; ?>	
 </body>

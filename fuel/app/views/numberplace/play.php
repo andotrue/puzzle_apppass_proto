@@ -20,58 +20,30 @@
 	</div>
 	<?php } ?>
 
-
-
-
 	<div id="main" class="span6">
-<?////= $puzzle ?>
-
-<table id="np">
-<tbody>
-<tr>
-<td data-grp='1' data-col='1' class='fx'><div class="num">5</div></td><td data-grp='1' data-col='2'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='1' data-col='3' class='fx'><div class="num">2</div></td><td data-grp='2' data-col='4' class='fx'><div class="num">8</div></td><td data-grp='2' data-col='5' class='fx'><div class="num">3</div></td><td data-grp='2' data-col='6' class='fx'><div class="num">6</div></td><td data-grp='3' data-col='7' class='fx'><div class="num">1</div></td><td data-grp='3' data-col='8'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='3' data-col='9' class='fx'><div class="num">7</div></td></tr>
-<tr>
-<td data-grp='1' data-col='1'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='1' data-col='2' class='fx'><div class="num">7</div></td><td data-grp='1' data-col='3'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='2' data-col='4' class='fx'><div class="num">1</div></td><td data-grp='2' data-col='5'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='2' data-col='6' class='fx'><div class="num">4</div></td><td data-grp='3' data-col='7'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='3' data-col='8' class='fx'><div class="num">5</div></td><td data-grp='3' data-col='9'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td></tr>
-<tr>
-<td data-grp='1' data-col='1' class='fx'><div class="num">1</div></td><td data-grp='1' data-col='2' class='fx'><div class="num">3</div></td><td data-grp='1' data-col='3'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='2' data-col='4'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='2' data-col='5'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='2' data-col='6'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='3' data-col='7'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='3' data-col='8' class='fx'><div class="num">8</div></td><td data-grp='3' data-col='9' class='fx'><div class="num">6</div></td></tr>
-<tr>
-<td data-grp='4' data-col='1' class='fx'><div class="num">7</div></td><td data-grp='4' data-col='2'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='4' data-col='3'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='5' data-col='4' class='fx'><div class="num">9</div></td><td data-grp='5' data-col='5'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='5' data-col='6' class='fx'><div class="num">2</div></td><td data-grp='6' data-col='7'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='6' data-col='8'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='6' data-col='9' class='fx'><div class="num">4</div></td></tr>
-<tr>
-<td data-grp='4' data-col='1' class='fx'><div class="num">3</div></td><td data-grp='4' data-col='2' class='fx'><div class="num">4</div></td><td data-grp='4' data-col='3'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='5' data-col='4'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='5' data-col='5'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='5' data-col='6'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='6' data-col='7'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='6' data-col='8' class='fx'><div class="num">2</div></td><td data-grp='6' data-col='9' class='fx'><div class="num">1</div></td></tr>
-<tr>
-<td data-grp='4' data-col='1'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='4' data-col='2'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='4' data-col='3' class='fx'><div class="num">8</div></td><td data-grp='5' data-col='4'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='5' data-col='5'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='5' data-col='6'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='6' data-col='7' class='fx'><div class="num">7</div></td><td data-grp='6' data-col='8'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='6' data-col='9'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td></tr>
-<tr>
-<td data-grp='7' data-col='1' class='fx'><div class="num">9</div></td><td data-grp='7' data-col='2'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='7' data-col='3' class='fx'><div class="num">3</div></td><td data-grp='8' data-col='4' class='fx'><div class="num">5</div></td><td data-grp='8' data-col='5'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='8' data-col='6' class='fx'><div class="num">7</div></td><td data-grp='9' data-col='7' class='fx'><div class="num">4</div></td><td data-grp='9' data-col='8'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='9' data-col='9' class='fx'><div class="num">8</div></td></tr>
-<tr>
-<td data-grp='7' data-col='1'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='7' data-col='2' class='fx'><div class="num">6</div></td><td data-grp='7' data-col='3'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='8' data-col='4'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='8' data-col='5'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='8' data-col='6'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='9' data-col='7'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='9' data-col='8' class='fx'><div class="num">1</div></td><td data-grp='9' data-col='9'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td></tr>
-<tr>
-<td data-grp='7' data-col='1' class='fx'><div class="num">2</div></td><td data-grp='7' data-col='2' class='fx'><div class="num">8</div></td><td data-grp='7' data-col='3'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='8' data-col='4' class='fx'><div class="num">6</div></td><td data-grp='8' data-col='5'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='8' data-col='6' class='fx'><div class="num">1</div></td><td data-grp='9' data-col='7'><div class="num"><table class="memo"><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table></div></td><td data-grp='9' data-col='8' class='fx'><div class="num">7</div></td><td data-grp='9' data-col='9' class='fx'><div class="num">9</div></td></tr>
-</tbody>
-</table>
-
-<?php 
-//var_dump($table2);exit;
-//echo count($table2);
-//var_dump($table2);
-echo "<table id='np'>\n";
-echo "<tbody>\n";
-foreach($table2 as $row){
-    echo "<tr>\n";
-    foreach($row as $cell){
-        //var_dump($cell);
-        $td_obj = "";
-        $td_obj = isset($cell["data-col"])? " data-col='".$cell["data-col"]."'" :"";
-        $td_obj .= isset($cell["data-grp"])? " data-grp='".$cell["data-grp"]."'" :"";
-        echo isset($cell["class"])? "<td $td_obj class='".$cell["class"]."'>" : "<td>";
-        echo isset($cell["data"])? "<div class='num'>" . $cell["data"] . "</div>" : "";
-        echo "</td>";
+    <?////= $puzzle ?>
+    <?php 
+    //var_dump($table2);exit;
+    //echo count($table2);
+    //var_dump($table2);
+    echo "<table id='np'>\n";
+    echo "<tbody>\n";
+    foreach($table2 as $row){
+        echo "<tr>\n";
+        foreach($row as $cell){
+            $td_obj = "";
+            $td_obj = isset($cell["data-col"])? " data-col='".$cell["data-col"]."'" :"";
+            $td_obj .= isset($cell["data-grp"])? " data-grp='".$cell["data-grp"]."'" :"";
+            echo isset($cell["class"])? "<td $td_obj class='".$cell["class"]."'>" : "<td>";
+            echo isset($cell["data"])? "<div class='num'>" . $cell["data"] . "</div>" : "";
+            echo "</td>";
+        }
+        echo "</tr>\n";
     }
-    echo "</tr>\n";
-}
-echo "</tbody>\n";
-echo "</table>\n";
-?>
-</div>
+    echo "</tbody>\n";
+    echo "</table>\n";
+    ?>
+	</div>
 
 <div id="sub" class="span6">
     <div id="num-select"><div>
@@ -165,11 +137,16 @@ echo "</table>\n";
 			<a href="#" class="btn2" id="restart_entry"><img src="/img/dialog/restart_f.png" data-active-src="/img/dialog/restart.png"></a>
 		<?php else: ?>
 			<?php ////if ($this->is_login): ?>
+			会員なら。。。<br>
 			<a href="#" class="btn2" id="save"><img src="/img/dialog/save_f.png" data-active-src="/img/dialog/save.png"></a>
 			<?php ////else: ?>
+			<br><br>非会員なら。。。<br>
 			<a class="btn2"><img src="/img/dialog/save_gray.png"></a>
 			<p style="margin:-2em auto;font-size:xx-small">パズルメイト会員になると<br>ゲームの途中保存が可能です！</p>
 			<?php ////endif ?>
+			
+			<br><br><br><br>どっちも<br>
+			<!--  numberplace/reset/(puzzleid)  -->
 			<a href="#" class="btn2" id="restart"><img src="/img/dialog/restart_f.png" data-active-src="/img/dialog/restart.png"></a>
 		<?php endif ?>
 	</div>
