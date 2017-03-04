@@ -76,6 +76,7 @@ $(function() {
     });
 });
 </script>
+<header><img src="<?= $top_logo?: '/img/header.png' ?>" id="top-logo"></header>
 
 <h2 id="sub-header"><img src="/img/title_word.png"></h2>
 <div align="center">

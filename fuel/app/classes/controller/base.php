@@ -13,6 +13,7 @@ class Controller_Base extends Controller_Template
 			'pzl_apppass/use/bootstrap.css',
 			'pzl_apppass/use/bootstrap-responsive.css',
 			'pzl_apppass/use/common.css',
+			'pzl_apppass/base.css',
 		);
 		$this->template->js=array(
 			'jquery-1.8.2.js',

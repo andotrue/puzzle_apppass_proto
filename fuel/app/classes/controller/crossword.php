@@ -59,7 +59,7 @@ class Controller_Crossword extends Controller_Base
 		////->limit($limit + 1, ($page - 1) * $limit)->get()->result_array();
 		
 		$puzzles = array();
-        $query = DB::select(DB::expr('m.question,m.puzzleid,m.mapsizeh,l.status,'.$sort_var))->from(DB::expr('crossword_mst as m'))
+        $puzzles = DB::select(DB::expr('m.question,m.puzzleid,m.mapsizeh,l.status,'.$sort_var))->from(DB::expr('crossword_mst as m'))
                     ->join(DB::expr('crossword_log as l'),'LEFT')
                     ->on('m.puzzleid','=','l.puzzleid')
                     ->where('user_id','=',$user_id)
@@ -67,14 +67,11 @@ class Controller_Crossword extends Controller_Base
                     ->group_by('title')
                     ->order_by(DB::expr('lvsort asc, m.question asc'))
                     ->limit($limit + 1, ($page - 1) * $limit)
-                    ;
-        $puzzles = $query->execute()->as_array();
-        
+                    ->execute()->as_array();
         //Log::debug(print_r(DB::last_query(),true));
         //echo DB::last_query();exit;
         //Log::debug(print_r($puzzles,true));
         
-		
 		if (count($puzzles) == $limit + 1)
 		{
 			$data['next'] = $page + 1;
@@ -88,6 +85,7 @@ class Controller_Crossword extends Controller_Base
 	
 		$data["pzs"] = $puzzles;
 		$data["sort"] = $sort;
+
 		$graph = array();
 		////$graph["1"] = $this->crossword->find_graph($data['user_id'],1);
 		////$graph["2"] = $this->crossword->find_graph($data['user_id'],2);
@@ -102,9 +100,11 @@ class Controller_Crossword extends Controller_Base
 		$this->template->description  = "パズル誌発行部数業界No.1の(株)マガジン・マガジンが監修する良質な問題が遊び放題！ナンプレ、クロスワード、IQパズル・クイズ、女子力up、ひらめきupの５つのパズルから好きなゲームを選んでね♪";
 	
 		////$view_data["main_content"]	= $this->load->view('crossword/select',$data,true);
-		$view_data['top_logo'] = '/img/title_menu.png';
+		////$view_data['top_logo'] = '/img/title_menu.png';
 		////$view_data['stylesheets'][] = 'puzzle_menu';
 		////$view_data['javascripts'][] = 'puzzle_menu';
+		
+		$this->template->set_global('top_logo', '/img/title_menu.png');
 		//CSSファイルの追加
 		$this->template->css = isset($this->template->css)? $this->template->css : array();
 		array_push(
@@ -268,13 +268,13 @@ class Controller_Crossword extends Controller_Base
 			}
 			else $pos_x++;
 		}
+
 		////$tmpl = array('table_open' => '<table id="cw">');
 		////$this->table->set_template($tmpl);
-//echo "<pre>"; var_dump($hk);echo "</pre>";
-//echo "<pre>"; var_dump($table);echo "</pre>";
-//$data['table'] = $table;
-$this->template->set_global('table', $table, false);	
-		
+        //echo "<pre>"; var_dump($hk);echo "</pre>";
+        //echo "<pre>"; var_dump($table);echo "</pre>";
+        //$data['table'] = $table;
+        $this->template->set_global('table', $table, false);	
 
 		$data['entry_id'] = $entry_id;
 		$data['puz_id'] = $puzzleid;
@@ -302,19 +302,19 @@ $this->template->set_global('table', $table, false);
         $this->template->css = isset($this->template->css)? $this->template->css : array();
         array_push(
         		$this->template->css
-        		,"game/crossword.css"
-        		,"game/play_result.css"
-        		,"game/kb.css"
+        		,"pzl_apppass/crossword.css"
+        		,"pzl_apppass/play_result.css"
+        		,"pzl_apppass/kb.css"
         );
         
         //JSファイルの追加
         $this->template->js = isset($this->template->js)? $this->template->js : array();
         array_push(
         		$this->template->js
-        		,"game/button.js"
-        		,"game/crossword.js"
-        		,"game/kb.js"
-        		,"game/local_history.js"
+        		,"pzl_apppass/button.js"
+        		,"pzl_apppass/crossword.js"
+        		,"pzl_apppass/kb.js"
+        		,"pzl_apppass/local_history.js"
         );
         
 

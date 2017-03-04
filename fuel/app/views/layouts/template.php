@@ -4,7 +4,8 @@
 	<meta charset="utf-8">
 	<title><?= ($title)? $title." | " : "" ; ?></title>
 	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-	<meta name="viewport" content="width=1024px" >
+	<!-- <meta name="viewport" content="width=1024px" > -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="description" content="<?= $htmlmeta['description'] ?>">
     <meta name="keywords" content="<?= $htmlmeta['keywords'] ?>">
     <meta http-equiv="Pragma" content="no-cache">

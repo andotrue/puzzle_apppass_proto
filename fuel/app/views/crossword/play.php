@@ -1,6 +1,6 @@
 <div class="row-fluid" id="container" data-puzzle-type="np" data-puzzle-id="<?= $puz_id ?>" data-puzzle-timestamp="<?= $timestamp ?>">
 
-	<div id="main2" class="span6">
+	<div id="main" class="span6">
 		<div id="hk">
 			<?php foreach ($hk as $k => $v): ?><div data-answer-no="<?= $k ?>"><?= $v ?></div><?php endforeach ?>
 		</div>
@@ -143,11 +143,15 @@ line 4th
 			<a href="#" class="btn2" id="restart_entry"><img src="/img/dialog/restart_f.png" data-active-src="/img/dialog/restart.png"></a>
 		<?php else: ?>
 			<?php /////if ($this->is_login): ?>
+			会員なら。。。<br>
 			<a href="#" class="btn2" id="save"><img src="/img/dialog/save_f.png" data-active-src="/img/dialog/save.png"></a>
 			<?php ////else: ?>
+			<br><br>非会員なら。。。<br>
 			<a class="btn2"><img src="/img/dialog/save_gray.png"></a>
 			<p style="margin:-2em auto;font-size:xx-small">パズルメイト会員になると<br>ゲームの途中保存が可能です！</p>
 			<?php ////endif ?>
+			
+			<br><br><br><br>どっちも<br>
 			<a href="#" class="btn2" id="restart"><img src="/img/dialog/restart_f.png" data-active-src="/img/dialog/restart.png"></a>
 		<?php endif ?>
 	</div>
